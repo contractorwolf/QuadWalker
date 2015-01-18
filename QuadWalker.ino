@@ -1,4 +1,5 @@
 
+
 #include <SoftwareSerial.h>
 
 
@@ -24,14 +25,14 @@
 
 
 int servoCenter = 700;
-int torsoMaxMovement = 45;//220 max
-int legMaxMovement = 75;//140 max
+int torsoMaxMovement = 45;//  220 max
+int legMaxMovement = 85;//75  140 max
 
 boolean isTorsoActive = true;
 boolean isLegActive = true;
 
-int torsoMovementDelay = 500;//360 max
-int legMovementDelay = 600;//160;//280 max
+int torsoMovementDelay = 100;//360 max
+int legMovementDelay = 200;//160;//280 max
 
 int rearOffset = 70;
 
@@ -41,13 +42,10 @@ SoftwareSerial mySerial(10, 11); // RX, TX
 
 
 void setup()  {
-  //Servo Control board
-  //Serial1.begin(2400);
-  
+  //Servo Control board control
   mySerial.begin(2400);
   
-  
-
+  //start debug
   Serial.begin(9600);
   
   while (!Serial) {
@@ -74,14 +72,8 @@ void setup()  {
   delay(5000);
 }
 
-bool direction = false;
 void loop() {
-  
-
-  
-  
-  
-
+ 
   if(isTorsoActive){
       AltMoveServo(TORSOCHANNEL, -torsoMaxMovement);//-220
       AltMoveServo(TORSOCHANNEL2, torsoMaxMovement);//220   
@@ -122,37 +114,9 @@ void loop() {
 
 
 
-void MoveServo(int servo_channel, int movement){
-
-  
-    int servo_angle = servoCenter + movement;
-  
-  
-    byte lsb = servo_angle;
-    byte msb =  servo_angle >> 8;
-    int ramp = 0;
-  
-  
-    Serial1.write(33);  //!
-    Serial1.write(83);  //S
-    Serial1.write(67);  //C
-    Serial1.write(servo_channel);  //channel
-    Serial1.write(ramp);  //rampspeed
-    Serial1.write(lsb);  //LSB
-    Serial1.write(msb);  //MSB
-    Serial1.write(13);
-    
-    
-    Serial.print("channel:");
-    Serial.print(servo_channel);
-       
-    Serial.print(" angle:");
-    Serial.println(servo_angle);
-}
-
 
 void AltMoveServo(int servo_channel, int movement){
-
+//if used with the soft serial
   
     int servo_angle = servoCenter + movement;
   
