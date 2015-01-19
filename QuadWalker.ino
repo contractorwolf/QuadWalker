@@ -26,13 +26,13 @@
 
 int servoCenter = 700;
 int torsoMaxMovement = 45;//  220 max
-int legMaxMovement = 85;//75  140 max
+int legMaxMovement = 75;//75  140 max
 
 boolean isTorsoActive = true;
 boolean isLegActive = true;
 
-int torsoMovementDelay = 100;//360 max
-int legMovementDelay = 200;//160;//280 max
+int torsoMovementDelay = 200;//360 maxww
+int legMovementDelay = 400;//160;//280 max
 
 int rearOffset = 70;
 
